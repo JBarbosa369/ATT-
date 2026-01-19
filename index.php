@@ -1,32 +1,38 @@
 <?php
-$url = $_SERVER["REQUEST_URI"] . $_SERVER
-["REQUEST_URI"];
 $METODO_REQ = $_SERVER["REQUEST_METHOD"];
-echo $METODO_REQ;
 
-echo $url;
-if($METODO_REQ == "POST"){
-    $input = $_POST["teste"];
-    echo $input;
+if ($METODO_REQ == "POST") {
+    $nome = $_POST["nome"] ?? "";
+    $sobrenome = $_POST["sobrenome"] ?? "";
+
+ 
+    $nome = htmlspecialchars(trim($nome));
+    $sobrenome = htmlspecialchars(trim($sobrenome));
+
+    if ($nome && $sobrenome) {
+        echo "<p>Nome completo: <strong>$nome $sobrenome</strong></p>";
+    } else {
+        echo "<p>Preencha nome e sobrenome.</p>";
+    }
 }
-
 ?>
 
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividade 19.01.2026</title>
 </head>
 <body>
-    <form action=""method = "POST">
-        <input type="text"  name = "teste" placeholder = "Digite algo...">
-        <button>Enviar</button>
-    </form>
+
+<form action="" method="POST">
+    <input type="text" name="nome" placeholder="Digite seu nome">
+    <br><br>
+    <input type="text" name="sobrenome" placeholder="Digite seu sobrenome">
+    <br><br>
+    <button type="submit">Enviar</button>
+</form>
+
 </body>
 </html>
+
